@@ -20,7 +20,7 @@ df = get_data()
 
 # ---------------------- CLEANING ---------------------- #
 
-type_map = 
+type_map = {
     "townhouse": "Townhouse",
     "condop": "Condop",
     "condo": "Condo",
@@ -281,4 +281,5 @@ st.dataframe(display_price[[
     "ADDRESS"
 
 ]])
+
 
