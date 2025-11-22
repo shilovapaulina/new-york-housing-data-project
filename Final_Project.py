@@ -20,28 +20,23 @@ df = get_data()
 
 # ---------------------- CLEANING ---------------------- #
 
-# [FUNC2P]
+type_map = {
+    "townhouse": "Townhouse",
+    "condop": "Condop",
+    "condo": "Condo",
+    "mobile house": "Mobile house",
+    "multi-family": "Multi-family",
+    "co-op": "Co-op",
+    "house": "House"
+}
+
+# [FUNC2P] and [DICTMETHOD]
 def clean_house_type(house_type, default=None):
-
-    # formats the house types to remove extra types and "for sale" at the end of the types
     t = str(house_type).lower()
-
-    if "townhouse" in t:
-        return 'Townhouse'
-    if "condop" in t:
-        return 'Condop'
-    if "condo" in t:
-        return 'Condo'
-    if "mobile house" in t:
-        return 'Mobile house'
-    if "multi-family" in t:
-        return 'Multi-family'
-    if "co-op" in t:
-        return 'Co-op'
-    if "house" in t:
-        return 'House'
-
-    return default # removes "for sale, land, pending, etc."
+    for key in type_map.keys():
+        if key in t:
+            return type_map.get(key)
+    return default
 
 # applies the cleaning function to the TYPE column
 df["CLEAN_TYPE"] = df["TYPE"].apply(clean_house_type)
@@ -284,4 +279,5 @@ st.dataframe(display_price[[
     "CLEAN_TYPE",
     "SUBLOCALITY",
     "ADDRESS"
+
 ]])
